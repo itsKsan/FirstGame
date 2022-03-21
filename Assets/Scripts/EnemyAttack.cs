@@ -16,7 +16,5 @@ public class EnemyAttack : MonoBehaviour
     {
         var damageableObject = hit.GetComponent<IDamageable>();
         damageableObject?.TakeHit(_damage,hit);
-
-        GameObject.Destroy(gameObject);
     }
 }
