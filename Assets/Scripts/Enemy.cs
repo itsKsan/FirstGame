@@ -16,7 +16,7 @@ public class Enemy : LivingEntity
     private Animator _animator;
     private Player player;
 
-    [SerializeField] private Transform _attackBox;
+    [SerializeField] private Transform[] _attackBox;
 
     [Header("Settings")]
     [SerializeField] private float attackDistanceThreshold;

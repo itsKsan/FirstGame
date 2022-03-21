@@ -1868,7 +1868,7 @@ GameObject:
   - component: {fileID: 1696788435}
   - component: {fileID: 1696788434}
   m_Layer: 0
-  m_Name: Spawners
+  m_Name: Spawner Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1891,10 +1891,13 @@ MonoBehaviour:
   - {fileID: 2011456775}
   - {fileID: 734447236}
   - {fileID: 1193057532}
-  enemyPrefab: {fileID: 5299433795568615737, guid: d62a4394ae85a7d42a3f0c033fd0638a, type: 3}
+  enemyPrefab:
+  - {fileID: 5299433795568615737, guid: d62a4394ae85a7d42a3f0c033fd0638a, type: 3}
+  - {fileID: 7910976171956621078, guid: d9bb402850e17a149bb6a35be8a3a047, type: 3}
   enemyCount: 0
-  maxEnemies: 10
+  maxEnemies: 20
   spawnInterval: 0.3
+  eliteEnemyChance: 20
 --- !u!4 &1696788435
 Transform:
   m_ObjectHideFlags: 0
