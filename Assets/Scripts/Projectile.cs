@@ -25,6 +25,11 @@ public class Projectile : MonoBehaviour
         {
             OnHitObject(other);
         }
+
+        if (other.gameObject.CompareTag("Obsticle"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnHitObject(Collider hit)
@@ -32,6 +37,6 @@ public class Projectile : MonoBehaviour
         var damageableObject = hit.GetComponent<IDamageable>();
         damageableObject?.TakeHit(_damage,hit);
 
-        GameObject.Destroy(gameObject);
+         Destroy(gameObject);
     }
 }
