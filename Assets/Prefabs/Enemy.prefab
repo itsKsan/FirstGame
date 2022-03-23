@@ -77,7 +77,7 @@ Animator:
   m_GameObject: {fileID: 1198885650493478966}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69e86bbc242723347aed732e3edff1ae, type: 2}
+  m_Controller: {fileID: 9100000, guid: a641a287aec87df4a921256e4fecbb5c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -437,7 +437,8 @@ MonoBehaviour:
   statusBar: {fileID: 2063206754445064682}
   _startingHealth: 2
   Health: 0
-  _attackBox: {fileID: 0}
+  _attackBox:
+  - {fileID: 0}
   attackDistanceThreshold: 0
   pathRefreshTime: 0.25
 --- !u!195 &-5563970476913164842

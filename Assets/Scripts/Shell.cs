@@ -3,13 +3,34 @@ using UnityEngine;
 
 public class Shell : MonoBehaviour
 {
-    [SerializeField] private GameObject explosion = null;
+    [SerializeField] private GameObject explosionParticle;
     
-    private void OnCollisionEnter(Collision collision)
+    [Header("Settings")]
+    [SerializeField] private float explosionRadius = 3f;
+    [SerializeField] private float explosiveForce = 500;
+    [SerializeField] private float damage = 3f;
+    
+    private void OnCollisionEnter(Collision hit)
     {
-        return;
-        GameObject exp = Instantiate(explosion, this.transform.position, Quaternion.identity);
-        Destroy(exp, 0.5f);
+        GameObject explosion = Instantiate(explosionParticle, this.transform.position, Quaternion.identity);
+
+        Collider[] hitColliders = Physics.OverlapSphere(explosion.transform.position, explosionRadius);
+        foreach (var obj in hitColliders)
+        {
+            if (obj.CompareTag("Player"))
+            {
+                var damageableObject = obj.GetComponent<IDamageable>();
+                damageableObject?.TakeHit(damage,null);
+            }
+            
+            var rb = obj.GetComponent<Rigidbody>();
+            if (rb == null) continue;
+            
+            rb.AddExplosionForce(explosiveForce, transform.position, explosionRadius, 1);
+        }
+        
+        
+        Destroy(explosion, 0.5f);
         Destroy(this.gameObject);
     }
-}
+} 

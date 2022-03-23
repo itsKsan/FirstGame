@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 1044357200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 895621259}
   m_Father: {fileID: 1629540177}
@@ -91,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: abc3f988297ad2647b97a1660e9d6fdf, type: 2}
+  - {fileID: 2100000, guid: 62ab5ae076660ae419515ef719059578, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,7 +122,7 @@ BoxCollider:
   m_GameObject: {fileID: 1044357200}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -173,7 +173,12 @@ MonoBehaviour:
   shellPrefab: {fileID: 10148865859647983, guid: de5e8dd9feaf3b84492917c6ca1210cb, type: 3}
   shellSpawnPos: {fileID: 895621259}
   target: {fileID: 0}
-  parent: {fileID: 0}
+  parent: {fileID: 5006126189767233040}
+  redCircle: {fileID: 2742044266414609305, guid: 730d5c512be8ede42ad21cca805544f0, type: 3}
+  attackDistanceThreshold: 10
+  projectileSpeed: 15
+  turnSpeed: 10
+  fireRate: 1
 --- !u!1 &239469968759075224
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5006126189767233040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -0.39999962}
+  m_LocalPosition: {x: 0, y: 0.5, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1629540177}
@@ -1403,11 +1408,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
-  m_StoppingDistance: 30
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
