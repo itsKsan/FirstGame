@@ -75,6 +75,5 @@ public class Enemy : LivingEntity
         _currentState = State.Attacking;
         _pathfinder.enabled = false;
         _animator.SetBool("Attack", true);
-        
     }
 }

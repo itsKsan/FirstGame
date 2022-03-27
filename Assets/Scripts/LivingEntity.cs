@@ -4,8 +4,8 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, IDamageable
 {
     [SerializeField] private Healthbar statusBar;
-    [SerializeField] private float _startingHealth;
-    [SerializeField] protected float Health;
+    [SerializeField] private float _startingHealth; 
+    protected float Health;
     protected bool Dead;
     
     public event System.Action OnDeath;

@@ -15,7 +15,7 @@ public class CannonShoot : MonoBehaviour
     [SerializeField] private GameObject redCircle;
 
     [Header("Cannon Settings")]
-    [SerializeField] private float attackDistanceThreshold = 10;
+    [SerializeField] private float attackDistanceThreshold;
     [SerializeField] private float projectileSpeed = 15f;
     [SerializeField] private float turnSpeed = 5f;
     [SerializeField] private float fireRate = 1f;
@@ -27,8 +27,6 @@ public class CannonShoot : MonoBehaviour
     {
         target = GameObject.FindWithTag("Player");
         _agent = GetComponentInParent<NavMeshAgent>();
-
-        attackDistanceThreshold = _agent.stoppingDistance;
     }
 
 
@@ -43,7 +41,9 @@ public class CannonShoot : MonoBehaviour
     {
         if (target == null) return;
         
-        if (attackDistanceThreshold <= _agent.stoppingDistance && Time.time > _nextShootTime)
+        attackDistanceThreshold = Vector3.Distance(target.transform.position, transform.position);
+        
+        if (attackDistanceThreshold - 1f <= _agent.stoppingDistance && Time.time > _nextShootTime)
         {
             _nextShootTime = Time.time + fireRate;
             
