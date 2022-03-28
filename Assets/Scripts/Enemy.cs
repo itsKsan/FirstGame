@@ -62,7 +62,7 @@ public class Enemy : LivingEntity
         while (player != null)
         {
             var targetPosition = new Vector3(player.transform.position.x, 0, player.transform.position.z);
-            if (!Dead && _currentState == State.Chasing)
+            if (!Dead && _currentState == State.Chasing && _pathfinder.enabled)
             {
                 _pathfinder.SetDestination(targetPosition);
             }

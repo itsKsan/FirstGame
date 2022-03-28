@@ -9,10 +9,10 @@ public class Player : LivingEntity
     private WeaponController _weaponController;
     private Camera _camera;
     
-    
     [SerializeField][Range(0.1f, 10f)] private float moveSpeed = 4f;
 
     [SerializeField] private Transform weaponSlot;
+    [SerializeField] public Transform[] dots;
     
     private void Awake()
     {
