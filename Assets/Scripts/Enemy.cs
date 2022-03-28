@@ -14,7 +14,7 @@ public class Enemy : LivingEntity
     private State _currentState;
     
     private Animator _animator;
-    private Player player;
+    private Player _player;
 
     [SerializeField] private Transform[] _attackBox;
 
@@ -26,7 +26,7 @@ public class Enemy : LivingEntity
 
     private void Awake()
     {
-        player = FindObjectOfType<Player>();
+        _player = FindObjectOfType<Player>();
         _pathfinder = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
     }
@@ -41,9 +41,9 @@ public class Enemy : LivingEntity
 
     private void Update()
     {
-        if(player == null) return;
+        if(_player == null) return;
         
-        attackDistanceThreshold = Vector3.Distance(player.transform.position, transform.position);
+        attackDistanceThreshold = Vector3.Distance(_player.transform.position, transform.position);
 
         if (attackDistanceThreshold <= _pathfinder.stoppingDistance && !Dead)
         {
@@ -59,9 +59,9 @@ public class Enemy : LivingEntity
 
     private IEnumerator UpdatePath()
     {
-        while (player != null)
+        while (_player != null)
         {
-            var targetPosition = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+            var targetPosition = new Vector3(_player.transform.position.x, 0, _player.transform.position.z);
             if (!Dead && _currentState == State.Chasing && _pathfinder.enabled)
             {
                 _pathfinder.SetDestination(targetPosition);

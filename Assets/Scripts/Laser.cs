@@ -15,12 +15,15 @@ public class Laser : MonoBehaviour
     [Header("Laser Settings")]
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private float turnSpeed = 2f;
-
-    private GameObject laserAim;
+    [SerializeField] private float attackDistance = 4f;
+    
+    private GameObject _laserAim;
     private float _attackDistanceThreshold;
     private float _nextShootTime;
     private bool _instantiated = true;
     
+    private static readonly int LookTarget = Animator.StringToHash("LookTarget");
+
     private void Awake()
     {
         _pathfinder = GetComponent<NavMeshAgent>();
@@ -35,21 +38,22 @@ public class Laser : MonoBehaviour
 
         _attackDistanceThreshold = Vector3.Distance(_target.transform.position, transform.position);
 
-        if (_attackDistanceThreshold <= _pathfinder.stoppingDistance + 4f)
+        if (_attackDistanceThreshold <= _pathfinder.stoppingDistance + attackDistance)
         {
-            _animator.SetBool("LookTarget", true);
+            _animator.SetBool(LookTarget, true);
             _pathfinder.enabled = false;
 
+            attackDistance = 30f;
+            
             if (Time.time > _nextShootTime)
             {
                 InstantiateLaserTarget(_instantiated); 
                 StartCoroutine(nameof(Fire));
             }
-            
         }
         else
         {
-            _animator.SetBool("LookTarget", false);
+            _animator.SetBool(LookTarget, false);
             
             lineRenderer[0].enabled = false;
             lineRenderer[1].enabled = false;
@@ -72,7 +76,7 @@ public class Laser : MonoBehaviour
         {
             lineRenderer[i].enabled = true;
             lineRenderer[i].SetPosition(0, laserGun[i].transform.position);
-            lineRenderer[i].SetPosition(1, laserAim.transform.position);
+            lineRenderer[i].SetPosition(1, _laserAim.transform.position);
         }
         
         yield return new WaitForSeconds(fireRate);
@@ -80,6 +84,7 @@ public class Laser : MonoBehaviour
         lineRenderer[1].enabled = false;
         
         _nextShootTime = Time.time + fireRate;
+        attackDistance = 4f;
         _pathfinder.enabled = true;
         _instantiated = true;
     }
@@ -89,10 +94,10 @@ public class Laser : MonoBehaviour
         if (!spawn) return;
         
         _instantiated = false;
-        laserAim = Instantiate(laserTarget, _target.GetComponent<Player>().dots[0].position,
+        _laserAim = Instantiate(laserTarget, _target.GetComponent<Player>().dots[0].position,
             Quaternion.identity);
-        laserAim.GetComponent<LaserAim>().SetActive(true);
-        laserAim.GetComponent<LaserAim>().EndPos = _target.GetComponent<Player>().dots[1].position;
+        _laserAim.GetComponent<LaserAim>().SetActive(true);
+        _laserAim.GetComponent<LaserAim>().EndPos = _target.GetComponent<Player>().dots[1].position;
         
     }
 }

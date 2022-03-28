@@ -963,9 +963,10 @@ MonoBehaviour:
   lineRenderer:
   - {fileID: 3899916812370441909}
   - {fileID: 2292683380870681863}
-  laserTarget: {fileID: 6090600345153798634, guid: 51ccd92ba863d43449a095786dd71138, type: 3}
-  fireRate: 2
-  turnSpeed: 2
+  laserTarget: {fileID: 6090600345153798638, guid: 51ccd92ba863d43449a095786dd71138, type: 3}
+  fireRate: 1.5
+  turnSpeed: 5
+  attackDistance: 4
 --- !u!1 &5980437177859798086
 GameObject:
   m_ObjectHideFlags: 0
